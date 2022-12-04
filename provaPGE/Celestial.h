@@ -11,16 +11,12 @@ namespace Celestial {
 	{
 	protected:
 		const double m_mass{ 1. };
-	
-
-		
-
 		//std::vector<olc::vd2d> operator()(float fElapsedTime, std::vector<olc::vd2d> choords) override;
 
 	public:
 		Celestial(olc::PixelGameEngine* game) : Balls(game) {}
 		Celestial(olc::vd2d pos, olc::vd2d vel, double mass) : Balls(pos, vel), m_mass(mass) {}
-	
+
 		void ChangePos(olc::PixelGameEngine* game, float fElapsedTime);
 
 		//std::vector<olc::vd2d> Choords() const override;
