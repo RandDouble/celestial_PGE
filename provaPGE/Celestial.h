@@ -11,15 +11,17 @@ namespace Celestial {
 	{
 	protected:
 		const double m_mass{ 1. };
-		//std::vector<olc::vd2d> operator()(float fElapsedTime, std::vector<olc::vd2d> choords) override;
+		//std::array<olc::vd2d, 2> operator()(float fElapsedTime, std::array<olc::vd2d, 2> coords) override;
 
 	public:
 		Celestial(olc::PixelGameEngine* game) : Balls(game) {}
-		Celestial(olc::vd2d pos, olc::vd2d vel, double mass) : Balls(pos, vel), m_mass(mass) {}
+		Celestial(olc::PixelGameEngine* game, olc::vd2d pos, olc::vd2d vel, double mass) : Balls(pos, vel), m_mass(mass) {}
 
-		void ChangePos(olc::PixelGameEngine* game, float fElapsedTime);
+		virtual std::array<olc::vd2d,2> operator() (const float fElapsedTime, const std::array<olc::vd2d, 2>& choord) const override;
 
-		//std::vector<olc::vd2d> Choords() const override;
+		//void ChangePos(olc::PixelGameEngine* game, float fElapsedTime);
+
+		//std::array<olc::vd2d, 2> coords() const override;
 	};
 
 
@@ -27,6 +29,7 @@ namespace Celestial {
 	class Sun : public Celestial
 	{
 	public:
-		Sun(olc::PixelGameEngine* game) : Celestial({ game->ScreenWidth() / 2.f, game->ScreenHeight() / 2.f }, { 0.,0. }, 1.989e30) {}
+		Sun(olc::PixelGameEngine* game) : Celestial(game, { game->ScreenWidth() / 2.f, game->ScreenHeight() / 2.f }, { 0.,0. }, 1.989e30) {}
 	};
+
 }
