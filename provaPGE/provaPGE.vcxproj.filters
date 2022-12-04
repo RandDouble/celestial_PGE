@@ -27,7 +27,7 @@
     <ClCompile Include="Balls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MovementeEngine.cpp">
+    <ClCompile Include="MovementEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Celestial.cpp">
@@ -47,15 +47,12 @@
     <ClInclude Include="Celestial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MovementeEngine.h">
+    <ClInclude Include="MovementEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VectorOp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt">

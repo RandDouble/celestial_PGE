@@ -1,6 +1,6 @@
 #pragma once
 #include "Balls.h"
-#include "MovementeEngine.h"
+#include "MovementEngine.h"
 
 #include <vector>
 
@@ -23,7 +23,7 @@ namespace Celestial {
 	
 		void ChangePos(olc::PixelGameEngine* game, float fElapsedTime);
 
-		std::vector<olc::vd2d> Choords() const override;
+		//std::vector<olc::vd2d> Choords() const override;
 	};
 
 

@@ -1,4 +1,4 @@
-#include "MovementeEngine.h"
+#include "MovementEngine.h"
 #include "olcPixelGameEngine.h"
 
 #include "Balls.h"
@@ -8,8 +8,8 @@
 
 enum Integrators {
 	EULER = 1,
-	RK4,
-	CELESTIAL,
+	RK4 ,
+	CELESTIAL ,
 };
 
 class Interface : public olc::PixelGameEngine
@@ -18,7 +18,7 @@ protected:
 	GravityBalls ball{ this };
 	enum Integrators mode = EULER;
 	bool mode_changed = false;
-	MovementEngine* engine;
+	Engines::MovementEngine* engine;
 
 public:
 	//constructor
@@ -27,7 +27,7 @@ public:
 		sAppName = "Proviamo";
 	}
 
-	~Interface() { if (engine) free(engine); };
+	~Interface() { if (engine) delete engine; };
 
 public:
 	//creation

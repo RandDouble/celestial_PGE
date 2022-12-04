@@ -11,7 +11,11 @@
 template <class T, class Y> std::vector <T> operator* (const std::vector<T>& v,const  Y& k)
 {
 	std::vector<T> res;
-	std::transform(v.begin(), v.end(), res.begin(), [&k](T a){return a * k; });
+	//std::transform(v.cbegin(), v.cend(), res.begin(), [&k](T a){return a * k; });
+	for (int i = 0; i < v.size(); i++) 
+	{
+		res.push_back(v[i] * k);
+	}
 	return res;
 }
 
@@ -25,27 +29,32 @@ template<class T> T operator* (const std::vector<T>& lhs,const std::vector<T>& r
 {
 	T res = 0;
 	assert(lhs.size() != rhs.size() && "operand doesn't match in size");
-	res = std::inner_product(lhs.begin(), lhs.end(), rhs.begin(), res);
+	res = std::inner_product(lhs.cbegin(), lhs.cend(), rhs.cbegin(), res);
 	return res;
 }
 
 template <class T> std::vector <T> operator+ (const std::vector<T>& A,const std::vector<T>& B)
 {
 	std::vector<T> res;
-	std::transform(A.begin(), A.end(), B.begin(), res.begin(), std::plus<>{});
+	//std::transform(A.cbegin(), A.cend(), B.cbegin(), res.begin(), std::plus<>{});
+	for (int i = 0; i < A.size(); i++) 
+	{
+		res.push_back(A[i] + B[i]);
+	}
 	return res;
 }
 
-template <class T> std::vector <T> operator- (const std::vector<T>& A,const std::vector<T>& B)
+template <class T> std::vector <T> operator- (const std::vector<T>& lhs,const std::vector<T>& rhs)
 {
 	std::vector<T> res;
-	std::transform(A.begin(), A.end(), B.begin(), res.begin(), std::minus<>{});
+	std::transform(lhs.cbegin(), lhs.cend(), rhs.cbegin(), res.begin(), std::minus<>{});
 	return res;
 }
 
 template <class T> std::vector<T>& operator += (std::vector<T>& lhs, const std::vector<T>& rhs)
 {
-	std::transform(lhs.begin(), lhs.end(), rhs.begin(), lhs.begin(), std::plus<>{});
+	std::transform(lhs.cbegin(), lhs.cend(), rhs.cbegin(), lhs.begin(), std::plus<>{});
+	
 	return lhs;
 }
 

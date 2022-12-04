@@ -1,15 +1,15 @@
 #include "Interface.h"
-#include "MovementeEngine.h"
+#include "MovementEngine.h"
 
 bool Interface::OnUserCreate()
 {
 	switch (mode)
 	{
 	case EULER:
-		this->engine = new Euler;
+		this->engine = new Engines::Euler();
 		break;
 	case RK4:
-		this->engine = new class RK4;
+		this->engine = new Engines::RK4();
 		break;
 	}
 	return true;
@@ -17,28 +17,19 @@ bool Interface::OnUserCreate()
 
 bool Interface::OnUserUpdate(float fElapsedTime)
 {
-	/* V1
-		for (int i = 0; i < ScreenWidth(); i++)
-		{
-			for (int j = 0; j < ScreenHeight(); j++)
-			{
-				Draw(i, j, olc::Pixel(rand() % 256, rand() % 256, rand() % 256, rand() % 256));
-			}
-		}
-	*/
 
 	// Adding a Grid
 	DrawLineDecal({ 0.f, ScreenHeight() / 2.f }, { (float)ScreenWidth(), ScreenHeight() / 2.f });
 	DrawLineDecal({ ScreenWidth() / 2.f, 0.f }, { ScreenWidth() / 2.f, ScreenHeight() * 1.f });
 
 	// Functioning Mode selector
-        if (mode != EULER && GetKey(olc::Key::K1).bPressed)
+    if (mode != EULER && GetKey(olc::Key::K1).bPressed)
 	{
 		/* Testing Euler Integration Methods */
 		mode = EULER;
 		mode_changed = true;
 	}
-        if (mode != RK4 && GetKey(olc::Key::K2).bPressed)
+    if (mode != RK4 && GetKey(olc::Key::K2).bPressed)
 	{
 		mode = RK4;
 		mode_changed = true;
@@ -48,7 +39,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 		mode = CELESTIAL;
 		mode_changed = true;
 	}
-
+	// Movement
 	switch (mode)
 	{
 	case EULER:
@@ -57,9 +48,10 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 		if (mode_changed)
 		{
 			mode_changed = false;
-			delete(engine);
-			engine = new Euler;
+			delete engine;
+			engine = new Engines::Euler();
 		}
+
 		ball.ChangePos(this, fElapsedTime, this->engine);
 		break;
 	case RK4:
@@ -69,8 +61,8 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 		if (mode_changed)
 		{
 			mode_changed = false;
-			delete(engine);
-			engine = new class RK4;
+			delete engine;
+			engine = new Engines::RK4();
 		}
 		ball.ChangePos(this, fElapsedTime, engine);
 		break;

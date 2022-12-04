@@ -90,6 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,6 +121,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,7 +134,7 @@
     <ClCompile Include="Balls.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MovementeEngine.cpp" />
+    <ClCompile Include="MovementEngine.cpp" />
     <ClCompile Include="olcPixelGameEngine.cpp" />
     <ClCompile Include="Celestial.cpp" />
   </ItemGroup>
@@ -140,7 +142,7 @@
     <ClInclude Include="Balls.h" />
     <ClInclude Include="Celestial.h" />
     <ClInclude Include="Interface.h" />
-    <ClInclude Include="MovementeEngine.h" />
+    <ClInclude Include="MovementEngine.h" />
     <ClInclude Include="olcPixelGameEngine.h" />
     <ClInclude Include="VectorOp.h" />
   </ItemGroup>
