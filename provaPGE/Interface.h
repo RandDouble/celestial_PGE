@@ -2,7 +2,7 @@
 #include "olcPixelGameEngine.h"
 
 #include "Balls.h"
-//#include "Celestial.h"
+#include "Celestial.h"
 
 
 #ifndef __INTERFACE__
@@ -21,18 +21,18 @@ protected:
 	enum Integrators mode = EULER;
 	bool mode_changed = false;
 	Engines::MovementEngine* engine;
-	//static const Celestial::Celestial
-	//	Mercury(this, {,0}, {0,0}, 0.330e24),
-	//	Venus(this, {,}, {0,0}, 4.87e24),
-	//	Earth(this, {,}, {0.,}, 5.97e24),
-	//	Mars(this,  {,}, {,}, 0.642e24),
-	//	Saturn(this, {,}, {,}, 1898e24),
-	//	Jupyter(this, {,}, {,}, 568e24),
-	//	Uranus(this, {,}, {,}, 86.8e24),
-	//	Neptune(this, {,}, {,}, 102e24),
-	//	Pluto(this, {,}, {,}, 0.0130e24);
-	//
-	//Celestial::Sun sun(this);
+	Celestial::Celestial
+		Mercury{ { this->ScreenWidth() / 2. - 40, 0. }, { 0 , 0 }, 0.330e24 },
+		Venus{ { this->ScreenWidth() / 2. - 40, 0. }, { 0 , 0 }, 4.87e24 },
+		Earth{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 5.97e24 },
+		Mars{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 0.642e24 },
+		Saturn{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 1898e24 },
+		Jupyter{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 568e24 },
+		Uranus{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 86.8e24 },
+		Neptune{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 102e24 },
+		Pluto{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 0.0130e24 };
+
+	Celestial::Sun SUN{ this };
 public:
 	//constructor
 	Interface()

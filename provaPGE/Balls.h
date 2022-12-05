@@ -28,7 +28,7 @@ public:
 	// This is very important, it is the functor of the class that contains
 	// the differential equation throught which is described the behaviour of the class
 	// I translated to public to simplicity... I do not understand friend keyword at this point...
-	virtual std::array<olc::vd2d, 2> operator() (const float fElapsedTime, const std::array<olc::vd2d, 2>& choord) const = 0;
+	virtual std::array<olc::vd2d, 2> operator() (const float fElapsedTime, const std::array<olc::vd2d, 2>& coord) const = 0;
 	// Constructor
 	Balls(olc::PixelGameEngine* game) {
 		m_pos.x = 360 /*game->ScreenWidth() / 2.f*/;
