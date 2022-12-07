@@ -139,12 +139,12 @@
     <ClCompile Include="src\olcPixelGameEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\Balls.h" />
-    <ClInclude Include="inc\Celestial.h" />
-    <ClInclude Include="inc\Interface.h" />
-    <ClInclude Include="inc\MovementEngine.h" />
-    <ClInclude Include="inc\olcPixelGameEngine.h" />
-    <ClInclude Include="inc\VectorOp.h" />
+    <ClInclude Include="incs\Balls.h" />
+    <ClInclude Include="incs\Celestial.h" />
+    <ClInclude Include="incs\Interface.h" />
+    <ClInclude Include="incs\MovementEngine.h" />
+    <ClInclude Include="incs\olcPixelGameEngine.h" />
+    <ClInclude Include="incs\VectorOp.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
