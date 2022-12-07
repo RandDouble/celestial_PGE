@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.8)
 project (celestial)
 add_executable(celestial.exe src/main.cpp)
+# settig cpp standard and enforcing its use
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_subdirectory(src)
@@ -9,5 +10,7 @@ target_link_libraries(celestial.exe PUBLIC obj)
 target_include_directories(celestial.exe PUBLIC "${PROJECT_BINARY_DIR}" "${PROJECT_SOURCE_DIR}/incs")
 
 if(UNIX)
-	set(GCC_CXX_FLAGS "-lX11 -lGL -lpthread -lpng -lstc++fs")
+	set(GCC_CXX_FLAGS "-lX11 -lGL -lpthread -lpng -lstdc++fs -std=c++17")
+	set(CMAKE_CXX_FLAGS "${GCC_CXX_FLAGS}")
+	target_link_libraries(celestial.exe PRIVATE -lX11 -lGL -lpthread -lpng -lstdc++fs)
 endif(UNIX)
