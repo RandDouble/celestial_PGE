@@ -1,4 +1,4 @@
-#include "Interface.h"
+#include "../incs/Interface.h"
 
 int main() {
 

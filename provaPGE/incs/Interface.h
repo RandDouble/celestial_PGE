@@ -14,6 +14,20 @@ enum Integrators {
 	CELESTIAL ,
 };
 
+enum planets {
+	MERCURY,
+	VENUS,
+	EARTH,
+	MARS,
+	SATURN,
+	JUPYTER,
+	URANUS,
+	NEPTUNE,
+	PLUTO
+};
+
+
+
 class Interface : public olc::PixelGameEngine
 {
 protected:
