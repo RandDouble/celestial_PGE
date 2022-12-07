@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\Balls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Interface.cpp">
+    <ClCompile Include="src\Celestial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="olcPixelGameEngine.cpp">
+    <ClCompile Include="src\Interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Balls.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MovementEngine.cpp">
+    <ClCompile Include="src\MovementEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Celestial.cpp">
+    <ClCompile Include="src\olcPixelGameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
