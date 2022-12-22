@@ -24,14 +24,27 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 	tv.DrawLineDecal({ 0.f, ScreenHeight() / 2.f }, { (float)ScreenWidth(), ScreenHeight() / 2.f });
 	tv.DrawLineDecal({ ScreenWidth() / 2.f, 0.f }, { ScreenWidth() / 2.f, ScreenHeight() * 1.f });
 
+	// Handling panning... I add this function in this section because I do not think it is necessary only
+	// to Celestial but also and foremost to Gravity Balls
+	// Movement with a mouse
+	if (GetMouse(2).bPressed) tv.StartPan(GetMousePos());
+	if (GetMouse(2).bHeld) tv.UpdatePan(GetMousePos());
+	if (GetMouse(2).bReleased) tv.EndPan(GetMousePos());
+	// Maybe in a future version adding a VIM style movement with HJKL
+
+	// Zoom
+	if (GetKey(olc::Key::M).bPressed) tv.ZoomAtScreenPos(2.0f, ball.GetPos());
+	if (GetKey(olc::Key::N).bPressed) tv.ZoomAtScreenPos(.5f, ball.GetPos());
+
+
 	// Functioning Mode selector
-    if (mode != EULER && GetKey(olc::Key::K1).bPressed)
+	if (mode != EULER && GetKey(olc::Key::K1).bPressed)
 	{
 		/* Testing Euler Integration Methods */
 		mode = EULER;
 		mode_changed = true;
 	}
-    if (mode != RK4 && GetKey(olc::Key::K2).bPressed)
+	if (mode != RK4 && GetKey(olc::Key::K2).bPressed)
 	{
 		mode = RK4;
 		mode_changed = true;
@@ -68,7 +81,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 		}
 		ball.ChangePos(this, fElapsedTime, engine);
 		break;
-	case CELESTIAL: 
+	case CELESTIAL:
 		/* Celestial Movement  WIP */
 		Clear(olc::WHITE);
 		break;
@@ -78,10 +91,6 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 	// Balls Drawer
 	ball.SelfDraw(tv, olc::RED);
 	ball.DisplayStats(this);
-
-	/* V2
-	ball.Redo(this);
-*/
 
 	// Reset Button
 	if (GetKey(olc::Key::SPACE).bPressed) ball.Reset(this);

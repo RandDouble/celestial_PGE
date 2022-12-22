@@ -32,11 +32,11 @@ public:
 	virtual std::array<olc::vd2d, 2> operator() (const float fElapsedTime, const std::array<olc::vd2d, 2>& coord) const = 0;
 	// Constructor
 	Balls(olc::PixelGameEngine* game) {
-		m_pos.x = 360 /*game->ScreenWidth() / 2.f*/;
-		m_pos.y = 240/*game->ScreenHeight() / 2.f*/;
+		m_pos.x = 360;
+		m_pos.y = 240;
 	}
 
-	Balls(olc::vd2d pos, olc::vd2d vel) : m_pos(pos), m_vel(vel), coords({pos, vel}) {}
+	Balls(olc::vd2d pos, olc::vd2d vel) : m_pos(pos), m_vel(vel), coords({ pos, vel }) {}
 
 	// Methods
 	//Drawing 
@@ -44,6 +44,9 @@ public:
 	void SelfDraw(olc::TransformedView& game, olc::Pixel p) const;
 	//Old Change Position
 	void ChangePos(olc::PixelGameEngine* game, float fElapsedTime, Engines::MovementEngine* engine);
+	//getting position
+	olc::vd2d GetPos() const { return m_pos; }
+
 	//reset to Initial Parameters
 	void Reset(olc::PixelGameEngine* game);
 	//I don t remember what it does
@@ -62,7 +65,7 @@ public:
 	//constructor
 	GravityBalls(olc::PixelGameEngine* game) : Balls(game) {}
 	GravityBalls(olc::vd2d pos, olc::vd2d vel) : Balls(pos, vel) {}
-	
+
 	//Methods
 	//This change the position uses Movement Engine to integrate the motion
 	void ChangePos(olc::PixelGameEngine* game, float fElapsedTime, Engines::MovementEngine* engine);

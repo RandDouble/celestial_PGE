@@ -33,7 +33,7 @@
     <ClCompile Include="src\olcPixelGameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="olcPGEX_TransformedView.cpp">
+    <ClCompile Include="src\olcPGEX_TransformedView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
