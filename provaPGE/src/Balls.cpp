@@ -2,14 +2,14 @@
 
 // Draws the Ball, takes in input the game engine
 // this version randomizes ball color
-void Balls::SelfDraw(olc::PixelGameEngine* game) const
+void Balls::SelfDraw(olc::TransformedView* game) const
 {
 	olc::Pixel color(rand() % 256, rand() % 256, rand() % 256, rand() % 256);
 	game->DrawCircle(coords[0], rad, color);
 }
 
 // Draws the Ball, takes in input the game engine and a color
-void Balls::SelfDraw(olc::PixelGameEngine* game, olc::Pixel p) const
+void Balls::SelfDraw(olc::TransformedView* game, olc::Pixel p) const
 {
 	game->DrawCircle(coords[0], rad, p);
 }

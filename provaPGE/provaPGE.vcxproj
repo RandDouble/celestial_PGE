@@ -139,6 +139,7 @@
     <ClCompile Include="src\olcPixelGameEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="incs\olcPGEX_TransformedView.h" />
     <ClInclude Include="incs\Balls.h" />
     <ClInclude Include="incs\Celestial.h" />
     <ClInclude Include="incs\Interface.h" />

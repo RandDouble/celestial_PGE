@@ -41,7 +41,7 @@ namespace Celestial {
 	public:
 		Sun(olc::PixelGameEngine* game) : Celestial({ game->ScreenWidth() / 2.f, game->ScreenHeight() / 2.f }, { 0.,0. }, 1.989e30) {}
 
-		void SelfDraw(olc::PixelGameEngine* game) { game->DrawCircle(coords[0], 10, olc::YELLOW); }
+		void SelfDraw(olc::TransformedView* game) { game->DrawCircle(coords[0], 10, olc::YELLOW); }
 		std::array<olc::vd2d, 2> operator()(const float fElapsedTime, const std::array<olc::vd2d, 2>& coords) const override {
 			std::array<olc::vd2d, 2> zero{ olc::vd2d{0.,0.}, olc::vd2d{0.,0.} };
 			return zero;

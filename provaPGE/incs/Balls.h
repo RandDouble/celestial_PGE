@@ -1,4 +1,5 @@
 #include "olcPixelGameEngine.h"
+#include "olcPGEX_TransformedView.h"
 #include "MovementEngine.h"
 
 #include <vector>
@@ -39,8 +40,8 @@ public:
 
 	// Methods
 	//Drawing 
-	void SelfDraw(olc::PixelGameEngine* game) const;
-	void SelfDraw(olc::PixelGameEngine* game, olc::Pixel p) const;
+	void SelfDraw(olc::TransformedView* game) const;
+	void SelfDraw(olc::TransformedView* game, olc::Pixel p) const;
 	//Old Change Position
 	void ChangePos(olc::PixelGameEngine* game, float fElapsedTime, Engines::MovementEngine* engine);
 	//reset to Initial Parameters

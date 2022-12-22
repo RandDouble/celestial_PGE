@@ -1,6 +1,9 @@
 #include "MovementEngine.h"
 #include "olcPixelGameEngine.h"
 
+#define OLC_PGEX_TRANSFORMEDVIEW
+#include "olcPGEX_TransformedView.h"
+
 #include "Balls.h"
 #include "Celestial.h"
 
@@ -30,7 +33,8 @@ enum planets {
 
 class Interface : public olc::PixelGameEngine
 {
-protected:
+	//Changed to private because there won't be anything that derives from Interface
+private:
 	GravityBalls ball{ { static_cast<double> (this->ScreenWidth()) , static_cast<double>(this->ScreenHeight()) }, {0., 0.} };
 	enum Integrators mode = EULER;
 	bool mode_changed = false;
@@ -47,6 +51,8 @@ protected:
 		Pluto{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 0.0130e24 };
 
 	Celestial::Sun SUN{ this };
+	olc::TransformedView tv;
+
 public:
 	//constructor
 	Interface()

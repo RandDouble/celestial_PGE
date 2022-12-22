@@ -3,6 +3,8 @@
 
 bool Interface::OnUserCreate()
 {
+	//Initializing transformed view
+	tv.Initialise({ ScreenWidth(), ScreenHeight() });
 	switch (mode)
 	{
 	case EULER:
@@ -19,8 +21,8 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 {
 
 	// Adding a Grid
-	DrawLineDecal({ 0.f, ScreenHeight() / 2.f }, { (float)ScreenWidth(), ScreenHeight() / 2.f });
-	DrawLineDecal({ ScreenWidth() / 2.f, 0.f }, { ScreenWidth() / 2.f, ScreenHeight() * 1.f });
+	tv.DrawLineDecal({ 0.f, ScreenHeight() / 2.f }, { (float)ScreenWidth(), ScreenHeight() / 2.f });
+	tv.DrawLineDecal({ ScreenWidth() / 2.f, 0.f }, { ScreenWidth() / 2.f, ScreenHeight() * 1.f });
 
 	// Functioning Mode selector
     if (mode != EULER && GetKey(olc::Key::K1).bPressed)
@@ -43,7 +45,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 	switch (mode)
 	{
 	case EULER:
-		DrawStringDecal({ 5., 25. }, "Mode " + std::to_string(mode) + ":\tEuler", olc::GREEN);
+		tv.DrawStringDecal({ 5., 25. }, "Mode " + std::to_string(mode) + ":\tEuler", olc::GREEN);
 		Clear(olc::BLACK);
 		if (mode_changed)
 		{
@@ -56,7 +58,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 		break;
 	case RK4:
 		/* Testing Runge Kutta 4 Integration Methods */
-		DrawStringDecal({ 5., 25. }, "Mode " + std::to_string(mode) + ":\tRK4", olc::GREEN);
+		tv.DrawStringDecal({ 5., 25. }, "Mode " + std::to_string(mode) + ":\tRK4", olc::GREEN);
 		Clear(olc::DARK_BLUE);
 		if (mode_changed)
 		{
@@ -74,7 +76,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 
 
 	// Balls Drawer
-	ball.SelfDraw(this, olc::RED);
+	ball.SelfDraw(tv, olc::RED);
 	ball.DisplayStats(this);
 
 	/* V2

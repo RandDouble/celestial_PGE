@@ -1,0 +1,5 @@
+add_library(MovementEngine MovementEngine.cpp)
+add_library(Balls Balls.cpp)
+add_library(olcPixelGameEngine olcPixelGameEngine.cpp)
+add_library(Intrfc Interface.cpp)
+add_library(Celestial Celestial.cpp)

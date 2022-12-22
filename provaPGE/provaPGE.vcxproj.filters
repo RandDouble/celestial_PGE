@@ -35,22 +35,25 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="olcPixelGameEngine.h">
+    <ClInclude Include="incs\Balls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interface.h">
+    <ClInclude Include="incs\Celestial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Balls.h">
+    <ClInclude Include="incs\Interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Celestial.h">
+    <ClInclude Include="incs\MovementEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MovementEngine.h">
+    <ClInclude Include="incs\olcPixelGameEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VectorOp.h">
+    <ClInclude Include="incs\VectorOp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="incs\olcPGEX_TransformedView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
