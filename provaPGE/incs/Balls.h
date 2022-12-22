@@ -21,7 +21,7 @@ protected:
 	// In a future release with 3D coords I think that we will need to implement a 3D vector different from
 	// olc::vd2d, who knows, maybe it is implemented in PGEX 3D graphics... I need to check.
 	std::array<olc::vd2d, 2> coords{ m_pos, m_vel };
-	int32_t rad{ 7 }; // Radius of the object
+	float rad{ 7 }; // Radius of the object
 	friend class Engines::MovementEngine; // I don't know if this is usefull yet.
 
 
@@ -40,8 +40,8 @@ public:
 
 	// Methods
 	//Drawing 
-	void SelfDraw(olc::TransformedView* game) const;
-	void SelfDraw(olc::TransformedView* game, olc::Pixel p) const;
+	void SelfDraw(olc::TransformedView& game) const;
+	void SelfDraw(olc::TransformedView& game, olc::Pixel p) const;
 	//Old Change Position
 	void ChangePos(olc::PixelGameEngine* game, float fElapsedTime, Engines::MovementEngine* engine);
 	//reset to Initial Parameters

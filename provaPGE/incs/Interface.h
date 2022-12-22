@@ -1,7 +1,5 @@
 #include "MovementEngine.h"
 #include "olcPixelGameEngine.h"
-
-#define OLC_PGEX_TRANSFORMEDVIEW
 #include "olcPGEX_TransformedView.h"
 
 #include "Balls.h"

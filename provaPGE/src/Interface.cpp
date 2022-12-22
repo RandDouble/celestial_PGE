@@ -68,7 +68,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 		}
 		ball.ChangePos(this, fElapsedTime, engine);
 		break;
-	case CELESTIAL:
+	case CELESTIAL: 
 		/* Celestial Movement  WIP */
 		Clear(olc::WHITE);
 		break;

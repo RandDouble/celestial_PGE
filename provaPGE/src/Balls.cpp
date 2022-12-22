@@ -2,16 +2,16 @@
 
 // Draws the Ball, takes in input the game engine
 // this version randomizes ball color
-void Balls::SelfDraw(olc::TransformedView* game) const
+void Balls::SelfDraw(olc::TransformedView& game) const
 {
 	olc::Pixel color(rand() % 256, rand() % 256, rand() % 256, rand() % 256);
-	game->DrawCircle(coords[0], rad, color);
+	game.DrawCircle(coords[0], rad, color);
 }
 
 // Draws the Ball, takes in input the game engine and a color
-void Balls::SelfDraw(olc::TransformedView* game, olc::Pixel p) const
+void Balls::SelfDraw(olc::TransformedView& game, olc::Pixel p) const
 {
-	game->DrawCircle(coords[0], rad, p);
+	game.DrawCircle(coords[0], rad, p);
 }
 
 
@@ -19,7 +19,7 @@ void Balls::SelfDraw(olc::TransformedView* game, olc::Pixel p) const
 void Balls::Redo(olc::PixelGameEngine* game)
 {
 	coords[0] = {(float)rand() / RAND_MAX * game->ScreenWidth(), (float)rand() / RAND_MAX * game->ScreenWidth()};
-	rad = rand() % 5 + 1;
+	rad = static_cast<float>( rand() % 5 + 1);
 }
 
 // Changes the ball position based on user input and the natural behaviour of the ball
