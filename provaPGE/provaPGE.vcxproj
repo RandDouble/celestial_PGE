@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="olcPGEX_TransformedView.cpp" />
     <ClCompile Include="src\Balls.cpp" />
     <ClCompile Include="src\Celestial.cpp" />
     <ClCompile Include="src\Interface.cpp" />
