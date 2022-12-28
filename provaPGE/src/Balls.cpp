@@ -97,7 +97,7 @@ void GravityBalls::DisplayStats(olc::TransformedView& game) const
 
 bool GravityBalls::CheckFloorCollision(olc::TransformedView& game) const
 {
-	return (coords[0].y + rad > game.GetWorldBR().y || coords[0].y - rad < game.GetWorldBR().y);
+	return (coords[0].y + rad > game.GetWorldBR().y || coords[0].y - rad < game.GetWorldTL().y);
 }
 
 bool GravityBalls::CheckLateralCollision(olc::TransformedView& game) const
