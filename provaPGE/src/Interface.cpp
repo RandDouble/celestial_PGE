@@ -4,7 +4,8 @@
 bool Interface::OnUserCreate()
 {
 	//Initializing transformed view
-	tv.Initialise({ ScreenWidth(), ScreenHeight() });
+	tv .Initialise({ ScreenWidth(), ScreenHeight() });
+
 	switch (mode)
 	{
 	case EULER:
@@ -27,14 +28,14 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 	// Handling panning... I add this function in this section because I do not think it is necessary only
 	// to Celestial but also and foremost to Gravity Balls
 	// Movement with a mouse
-	if (GetMouse(2).bPressed) tv.StartPan(GetMousePos());
-	if (GetMouse(2).bHeld) tv.UpdatePan(GetMousePos());
+	if (GetMouse(2).bPressed)  tv.StartPan(GetMousePos());
+	if (GetMouse(2).bHeld)     tv.UpdatePan(GetMousePos());
 	if (GetMouse(2).bReleased) tv.EndPan(GetMousePos());
 	// Maybe in a future version adding a VIM style movement with HJKL
 
 	// Zoom
-	if (GetKey(olc::Key::M).bPressed) tv.ZoomAtScreenPos(2.0f, ball.GetPos());
-	if (GetKey(olc::Key::N).bPressed) tv.ZoomAtScreenPos(.5f, ball.GetPos());
+	if (GetKey(olc::Key::M).bPressed) tv.ZoomAtScreenPos(2.0f, tv.ScaleToScreen(ball.GetPos()));
+	if (GetKey(olc::Key::N).bPressed) tv.ZoomAtScreenPos(.5f, tv.ScaleToScreen(ball.GetPos()));
 
 
 	// Functioning Mode selector
@@ -67,7 +68,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 			engine = new Engines::Euler();
 		}
 
-		ball.ChangePos(this, fElapsedTime, this->engine);
+		ball.ChangePos(tv, fElapsedTime, this->engine);
 		break;
 	case RK4:
 		/* Testing Runge Kutta 4 Integration Methods */
@@ -79,7 +80,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 			delete engine;
 			engine = new Engines::RK4();
 		}
-		ball.ChangePos(this, fElapsedTime, engine);
+		ball.ChangePos(tv, fElapsedTime, engine);
 		break;
 	case CELESTIAL:
 		/* Celestial Movement  WIP */
@@ -90,10 +91,10 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 
 	// Balls Drawer
 	ball.SelfDraw(tv, olc::RED);
-	ball.DisplayStats(this);
+	ball.DisplayStats(tv);
 
 	// Reset Button
-	if (GetKey(olc::Key::SPACE).bPressed) ball.Reset(this);
+	if (GetKey(olc::Key::SPACE).bPressed) ball.Reset();
 
 	// Exit Button
 	if (GetKey(olc::Key::F4).bPressed) return false;

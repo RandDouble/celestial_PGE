@@ -9,7 +9,8 @@
 class Balls
 {
 protected:
-	olc::vd2d m_pos;
+	olc::vd2d m_pos{100.f , 100.f}; // In last position changing to world coordinates... It will be a lot of work
+					 // Also just to remember this is the starting position... It's not the actual position, that is in coord	
 	olc::vd2d m_vel{ 50.f, 50.f };
 
 	// Trying to implement an external movement engine...
@@ -31,10 +32,7 @@ public:
 	// I translated to public to simplicity... I do not understand friend keyword at this point...
 	virtual std::array<olc::vd2d, 2> operator() (const float fElapsedTime, const std::array<olc::vd2d, 2>& coord) const = 0;
 	// Constructor
-	Balls(olc::PixelGameEngine* game) {
-		m_pos.x = 360;
-		m_pos.y = 240;
-	}
+	Balls() {;}
 
 	Balls(olc::vd2d pos, olc::vd2d vel) : m_pos(pos), m_vel(vel), coords({ pos, vel }) {}
 
@@ -45,10 +43,10 @@ public:
 	//Old Change Position
 	void ChangePos(olc::PixelGameEngine* game, float fElapsedTime, Engines::MovementEngine* engine);
 	//getting position
-	olc::vd2d GetPos() const { return m_pos; }
+	olc::vd2d GetPos() const { return coords[0]; }
 
 	//reset to Initial Parameters
-	void Reset(olc::PixelGameEngine* game);
+	void Reset();
 	//I don t remember what it does
 	void Redo(olc::PixelGameEngine* game);
 };
@@ -63,18 +61,18 @@ private:
 public:
 	std::array<olc::vd2d, 2> operator() (const float fElapsedTime, const std::array<olc::vd2d, 2>& choord) const override;
 	//constructor
-	GravityBalls(olc::PixelGameEngine* game) : Balls(game) {}
+	GravityBalls() : Balls() {}
 	GravityBalls(olc::vd2d pos, olc::vd2d vel) : Balls(pos, vel) {}
 
 	//Methods
 	//This change the position uses Movement Engine to integrate the motion
-	void ChangePos(olc::PixelGameEngine* game, float fElapsedTime, Engines::MovementEngine* engine);
+	void ChangePos(olc::TransformedView& game, float fElapsedTime, Engines::MovementEngine* engine);
 	//Print to screen the ball stats
-	void DisplayStats(olc::PixelGameEngine* game) const;
+	void DisplayStats(olc::TransformedView& game) const;
 	//Checks for collisions
-	bool CheckFloorCollision(olc::PixelGameEngine* game) const;
-	bool CheckLateralCollision(olc::PixelGameEngine* game) const;
+	bool CheckFloorCollision(olc::TransformedView& game) const;
+	bool CheckLateralCollision(olc::TransformedView& game) const;
 	//Managing Collisions
-	void ManageCollision(olc::PixelGameEngine* game, float fElapsedTime);
+	void ManageCollision(olc::TransformedView& game, float fElapsedTime);
 };
 

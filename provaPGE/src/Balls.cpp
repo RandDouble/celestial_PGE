@@ -1,14 +1,14 @@
 #include "../incs/Balls.h"
 
-// Draws the Ball, takes in input the game engine
+// Draws the Ball, takes in input the tv engine
 // this version randomizes ball color
-void Balls::SelfDraw(olc::TransformedView& game) const
+void Balls::SelfDraw(olc::TransformedView& tv) const
 {
 	olc::Pixel color(rand() % 256, rand() % 256, rand() % 256, rand() % 256);
-	game.DrawCircle(coords[0], rad, color);
+	tv.DrawCircle(coords[0], rad, color);
 }
 
-// Draws the Ball, takes in input the game engine and a color
+// Draws the Ball, takes in input the tv engine and a color
 void Balls::SelfDraw(olc::TransformedView& game, olc::Pixel p) const
 {
 	game.DrawCircle(coords[0], rad, p);
@@ -32,10 +32,10 @@ void Balls::ChangePos(olc::PixelGameEngine* game, float fElapsedTime, Engines::M
 }
 
 // Reset the ball changing its position to the window center
-void Balls::Reset(olc::PixelGameEngine* game)
+void Balls::Reset()
 {
-	coords[0].x = game->ScreenWidth() / 2.f;
-	coords[0].y = game->ScreenHeight() / 2.f;
+	coords[0].x = 100.f;
+	coords[0].y = 100.f;
 	coords[1] = { 0., 0. };
 }
 
@@ -52,29 +52,29 @@ std::array<olc::vd2d,2> GravityBalls::operator() (const float fElapsedTime, cons
 
 
 // Changes the ball position based on user input and the natural behaviour of the ball
-void GravityBalls::ChangePos(olc::PixelGameEngine* game, float fElapsedTime, Engines::MovementEngine* engine)
+void GravityBalls::ChangePos(olc::TransformedView& game, float fElapsedTime, Engines::MovementEngine* engine)
 {
-	if (game->GetKey(olc::Key::W).bHeld || game->GetKey(olc::Key::UP).bHeld)
+	if (game.GetPGE()->GetKey(olc::Key::W).bHeld || game.GetPGE()->GetKey(olc::Key::UP).bHeld)
 		// Moves UP with a constant velocity -m_vel.y
 		// At the end of User input changes the ball velocity to m_vel.y 
 	{
 		coords[0].y -= m_no_grav_vel.y * fElapsedTime;
 		coords[1] = {0, -m_no_grav_vel.y};
 	}
-	if (game->GetKey(olc::Key::A).bHeld || game->GetKey(olc::Key::LEFT).bHeld)
+	if (game.GetPGE()->GetKey(olc::Key::A).bHeld || game.GetPGE()->GetKey(olc::Key::LEFT).bHeld)
 		// Moves to the left with constant velocity -m_vel.x
 	{
 		coords[0].x -= m_no_grav_vel.x * fElapsedTime;
 		coords[1] = {-m_no_grav_vel.x, 0.};
 	}
 
-	if (game->GetKey(olc::Key::D).bHeld || game->GetKey(olc::Key::RIGHT).bHeld)
+	if (game.GetPGE()->GetKey(olc::Key::D).bHeld || game.GetPGE()->GetKey(olc::Key::RIGHT).bHeld)
 		// Moves to the right with +m_vel.x
 	{
 		coords[0].x += m_no_grav_vel.x * fElapsedTime;
 		coords[1] = {+m_no_grav_vel.x, 0};
 	}
-	if (game->GetKey(olc::Key::S).bHeld || game->GetKey(olc::Key::DOWN).bHeld)
+	if (game.GetPGE()->GetKey(olc::Key::S).bHeld || game.GetPGE()->GetKey(olc::Key::DOWN).bHeld)
 	{
 		// Moves Down with constant velocity +m_vel.y
 		coords[0].y += m_no_grav_vel.y * fElapsedTime;
@@ -89,23 +89,23 @@ void GravityBalls::ChangePos(olc::PixelGameEngine* game, float fElapsedTime, Eng
 }
 
 // Display current stats as position and velocity
-void GravityBalls::DisplayStats(olc::PixelGameEngine* game) const
+void GravityBalls::DisplayStats(olc::TransformedView& game) const
 {
-	game->DrawStringDecal({ 5.,5. }, "Position " + coords[0].str());
-	game->DrawStringDecal({ 5. , 15. }, "Velocity " + coords[1].str());
+	game.DrawStringDecal({ 5.,5. }, "Position " + coords[0].str());
+	game.DrawStringDecal({ 5. , 15. }, "Velocity " + coords[1].str());
 }
 
-bool GravityBalls::CheckFloorCollision(olc::PixelGameEngine* game) const
+bool GravityBalls::CheckFloorCollision(olc::TransformedView& game) const
 {
-	return (coords[0].y + rad > game->ScreenHeight() || coords[0].y - rad < 0.f);
+	return (coords[0].y + rad > game.GetWorldBR().y || coords[0].y - rad < game.GetWorldBR().y);
 }
 
-bool GravityBalls::CheckLateralCollision(olc::PixelGameEngine* game) const
+bool GravityBalls::CheckLateralCollision(olc::TransformedView& game) const
 {
-	return coords[0].x + rad > game->ScreenWidth() || coords[0].x - rad < 0.f;
+	return (coords[0].x + rad) > game.GetWorldBR().x || coords[0].x - rad < game.GetWorldTL().x;
 }
 
-void GravityBalls::ManageCollision(olc::PixelGameEngine* game, float fElapsedTime)
+void GravityBalls::ManageCollision(olc::TransformedView& game, float fElapsedTime)
 {
 	if (CheckFloorCollision(game))
 	{

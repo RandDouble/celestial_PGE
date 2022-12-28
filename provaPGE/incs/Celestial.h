@@ -20,7 +20,7 @@ namespace Celestial {
 
 	public:
 		// Constructors
-		Celestial(olc::PixelGameEngine* game) : Balls(game) { ; }
+		Celestial() : Balls() { ; }
 		Celestial(olc::vd2d pos, olc::vd2d vel, double mass) : Balls(pos, vel), m_mass(mass) { ; }
 		// Differential Equation
 		std::array<olc::vd2d, 2> operator() (const float fElapsedTime, const std::array<olc::vd2d, 2>& choord) const override;
