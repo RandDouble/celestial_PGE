@@ -91,8 +91,8 @@ void GravityBalls::ChangePos(olc::TransformedView& game, float fElapsedTime, Eng
 // Display current stats as position and velocity
 void GravityBalls::DisplayStats(olc::TransformedView& game) const
 {
-	game.DrawStringDecal({ 5.,5. }, "Position " + coords[0].str());
-	game.DrawStringDecal({ 5. , 15. }, "Velocity " + coords[1].str());
+	game.DrawStringDecal(game.ScreenToWorld({ 5.,5. }), "Position " + coords[0].str(), olc::WHITE, game.ScaleToWorld({1.f, 1.f}));
+	game.DrawStringDecal(game.ScreenToWorld({ 5. , 15. }), "Velocity " + coords[1].str(), olc::WHITE, game.ScaleToWorld({ 1.f, 1.f }));
 }
 
 bool GravityBalls::CheckFloorCollision(olc::TransformedView& game) const

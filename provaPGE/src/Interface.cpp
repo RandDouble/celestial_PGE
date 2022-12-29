@@ -22,8 +22,8 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 {
 
 	// Adding a Grid
-	tv.DrawLineDecal({ 0.f, ScreenHeight() / 2.f }, { (float)ScreenWidth(), ScreenHeight() / 2.f });
-	tv.DrawLineDecal({ ScreenWidth() / 2.f, 0.f }, { ScreenWidth() / 2.f, ScreenHeight() * 1.f });
+	tv.DrawLineDecal(tv.ScreenToWorld({ 0.f, ScreenHeight() / 2.f }), tv.ScreenToWorld({ (float)ScreenWidth(), ScreenHeight() / 2.f }));
+	tv.DrawLineDecal(tv.ScreenToWorld({ ScreenWidth() / 2.f, 0.f }), tv.ScreenToWorld({ ScreenWidth() / 2.f, ScreenHeight() * 1.f }));
 
 	// Handling panning... I add this function in this section because I do not think it is necessary only
 	// to Celestial but also and foremost to Gravity Balls
@@ -38,7 +38,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 	if (GetKey(olc::Key::M).bPressed) tv.ZoomAtScreenPos(2.0f, tv.WorldToScreen(ball.GetPos()));
 	if (GetKey(olc::Key::N).bPressed) tv.ZoomAtScreenPos(.5f, tv.WorldToScreen(ball.GetPos()));
 
-	tv.DrawStringDecal(tv.ScreenToWorld({ 5, 35 }), "Mouse Position :" + GetMousePos().str(), olc::YELLOW, tv.ScaleToWorld({ 1.f, 1.f }));
+	tv.DrawStringDecal(tv.ScreenToWorld({ 5, 35 }), "Mouse Position : " + GetMousePos().str(), olc::YELLOW, tv.ScaleToWorld({ 1.f, 1.f }));
 
 	// Functioning Mode selector
 	if (mode != EULER && GetKey(olc::Key::K1).bPressed)
@@ -61,7 +61,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 	switch (mode)
 	{
 	case EULER:
-		tv.DrawStringDecal({ 5., 25. }, "Mode " + std::to_string(mode) + ":\tEuler", olc::GREEN);
+		tv.DrawStringDecal(tv.ScreenToWorld({ 5., 25. }), "Mode " + std::to_string(mode) + ":\tEuler", olc::GREEN, tv.ScaleToWorld({1.f, 1.f}));
 		Clear(olc::BLACK);
 		if (mode_changed)
 		{
@@ -74,7 +74,7 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 		break;
 	case RK4:
 		/* Testing Runge Kutta 4 Integration Methods */
-		tv.DrawStringDecal({ 5., 25. }, "Mode " + std::to_string(mode) + ":\tRK4", olc::GREEN);
+		tv.DrawStringDecal(tv.ScreenToWorld({ 5., 25. }), "Mode " + std::to_string(mode) + ":\tRK4", olc::GREEN, tv.ScaleToWorld({ 1.f, 1.f }));
 		Clear(olc::DARK_BLUE);
 		if (mode_changed)
 		{
@@ -86,7 +86,9 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 		break;
 	case CELESTIAL:
 		/* Celestial Movement  WIP */
-		Clear(olc::WHITE);
+		tv.DrawStringDecal(tv.ScreenToWorld({ 5., 25. }), "Mode " + std::to_string(mode) + ":\tCelestial", olc::GREEN, tv.ScaleToWorld({ 1.f, 1.f }));
+		Clear(olc::DARK_CYAN);
+
 		break;
 	}
 
