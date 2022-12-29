@@ -28,15 +28,17 @@ bool Interface::OnUserUpdate(float fElapsedTime)
 	// Handling panning... I add this function in this section because I do not think it is necessary only
 	// to Celestial but also and foremost to Gravity Balls
 	// Movement with a mouse
-	if (GetMouse(2).bPressed)  tv.StartPan(GetMousePos());
+	if (GetMouse(2).bPressed)  tv.StartPan (GetMousePos());
 	if (GetMouse(2).bHeld)     tv.UpdatePan(GetMousePos());
-	if (GetMouse(2).bReleased) tv.EndPan(GetMousePos());
+	if (GetMouse(2).bReleased) tv.EndPan   (GetMousePos());
 	// Maybe in a future version adding a VIM style movement with HJKL
 
-	// Zoom
-	if (GetKey(olc::Key::M).bPressed) tv.ZoomAtScreenPos(2.0f, tv.ScaleToScreen(ball.GetPos()));
-	if (GetKey(olc::Key::N).bPressed) tv.ZoomAtScreenPos(.5f, tv.ScaleToScreen(ball.GetPos()));
 
+	// Zoom
+	if (GetKey(olc::Key::M).bPressed) tv.ZoomAtScreenPos(2.0f, tv.WorldToScreen(ball.GetPos()));
+	if (GetKey(olc::Key::N).bPressed) tv.ZoomAtScreenPos(.5f, tv.WorldToScreen(ball.GetPos()));
+
+	tv.DrawStringDecal(tv.ScreenToWorld({ 5, 35 }), "Mouse Position :" + GetMousePos().str(), olc::YELLOW, tv.ScaleToWorld({ 1.f, 1.f }));
 
 	// Functioning Mode selector
 	if (mode != EULER && GetKey(olc::Key::K1).bPressed)
