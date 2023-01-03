@@ -11,6 +11,7 @@ If you want to contribute to this code you can open a pull request, if it will b
 
 The project uses c++17 standard. It adheres to the standard in every way.
 It uses as game engine the [olcPixelGameEngine](https://github.com/OneLoneCoder/olcPixelGameEngine) made by javidx9 also known as [One Lone Coder](https://github.com/OneLoneCoder) under OLC-3 Licence.
+In ```PixelGameEngine.h``` and ```olcPGEX_TransformedView.h``` it is provided a copy of OLC-3 Licence as required by javidx9. I don\'t know if this is enough... but the license it is supplied, so I think I am in the clear. 
 
 ### Windows User
 
@@ -29,4 +30,21 @@ I do not have a Mac... so I do not know, CMake couldn't be tested in Mac OS envi
 
 ## Functioning
 
-WIP
+### What Doesn't work
+
+- Panning, but for now it is not a big problem.
+- Celestial it is not yet implemented, but it will be in the near future (Before my death, as a physicist I must specify that near future is referenced to the lifetime of a rock)
+- We do not have the sprites for every planet... Better we do not have any sprite.
+- The certainty that this compiles in MacOS... only a remote idea that it should compile.
+- A good CMake... but for me it works.
+- Testing... if someone is capable of writing some good test equipment it is gladly accepted... Now it is purely manual.
+
+### What actually there is:
+
+- A zoom, but it doesn't feel right
+- A Ball with gravity
+- Two types of Integration : Euler and Runge Kutta 4. In the future we will add more.
+- A good framerate, at least for now.
+- Some heavy OOP.
+
+And remember: "Potato always wins!!"

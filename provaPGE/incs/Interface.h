@@ -11,8 +11,8 @@
 
 enum Integrators {
 	EULER = 1,
-	RK4 ,
-	CELESTIAL ,
+	RK4,
+	CELESTIAL,
 };
 
 enum planets {
@@ -38,15 +38,15 @@ private:
 	bool mode_changed = false;
 	Engines::MovementEngine* engine;
 	Celestial::Celestial
-		Mercury{ { this->ScreenWidth() / 2. - 40, 0. }, { 0 , 0 }, 0.330e24 },
-		Venus{ { this->ScreenWidth() / 2. - 40, 0. }, { 0 , 0 }, 4.87e24 },
-		Earth{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 5.97e24 },
-		Mars{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 0.642e24 },
-		Saturn{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 1898e24 },
-		Jupyter{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 568e24 },
-		Uranus{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 86.8e24 },
-		Neptune{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 102e24 },
-		Pluto{ { this->ScreenWidth() / 2. - 40, 0. }, { 0., 0.}, 0.0130e24 };
+		Mercury{ { 57.9e6, 0.   }, { 47.9, 0. }, 0.330e24 },
+		Venus  { { 108.2e6, 0.  }, { 35.0, 0. },  4.87e24 },
+		Earth  { { 149.6e6, 0.  }, { 29.8, 0.},   5.97e24 },
+		Mars   { { 227.9e6, 0.  }, { 24.1, 0.},  0.642e24 },
+		Saturn { { 778.6e6, 0.  }, { 13.1, 0.},   1898e24 },
+		Jupyter{ { 1433.5e6, 0. }, {  9.7, 0.},    568e24 },
+		Uranus { { 2872.5e6, 0. }, {  6.8, 0.},   86.8e24 },
+		Neptune{ { 4495.1e6, 0. }, {  5.4, 0.},    102e24 },
+		Pluto  { { 5906.4e6, 0. }, { 0., 0.}, 0.0130e24 };
 
 	Celestial::Sun SUN{ this };
 	olc::TransformedView tv;
